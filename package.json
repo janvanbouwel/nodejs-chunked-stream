@@ -1,0 +1,25 @@
+{
+  "name": "chunked-stream",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Transforms a binary stream into an Object mode stream.",
+  "exports": "./dist/index.js",
+  "author": "Jan Van Bouwel",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist/ && tsc"
+  },
+  "devDependencies": {
+    "@sindresorhus/tsconfig": "^4.0.0",
+    "@types/node": "^18.11.9",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "eslint": "^8.47.0",
+    "prettier": "3.0.2",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.9.5"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}
