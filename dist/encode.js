@@ -1,8 +1,7 @@
 import { Transform } from "node:stream";
 import { MAX_BODY_LENGTH, BODY_LENGTH_LENGTH } from "./constants.js";
 import { isUint8Array } from "node:util/types";
-
-export function createEncodeStream(): Transform {
+export function createEncodeStream() {
   return new Transform({
     transform(chunk, _, callback) {
       if (!isUint8Array(chunk)) {
@@ -15,7 +14,6 @@ export function createEncodeStream(): Transform {
       }
       const bodyLength = Buffer.alloc(BODY_LENGTH_LENGTH);
       bodyLength.writeUInt32BE(chunk.length);
-
       this.push(bodyLength);
       this.push(chunk);
       callback();
