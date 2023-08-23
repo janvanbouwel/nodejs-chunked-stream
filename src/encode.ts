@@ -2,6 +2,8 @@ import { Transform } from "node:stream";
 import { MAX_BODY_LENGTH, BODY_LENGTH_LENGTH } from "./constants.js";
 import { isUint8Array } from "node:util/types";
 
+export class Encoder extends Transform {}
+
 /**
  * Creates an object mode Transform stream that encodes written buffers into a binary stream.
  *
@@ -16,8 +18,8 @@ import { isUint8Array } from "node:util/types";
  *
  * @returns chunk encoding transform stream
  */
-export function createEncodeStream(): Transform {
-  return new Transform({
+export function createEncodeStream(): Encoder {
+  return new Encoder({
     transform(chunks, _, callback) {
       if (!Array.isArray(chunks)) chunks = [chunks];
 
