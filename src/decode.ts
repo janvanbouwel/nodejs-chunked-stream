@@ -1,6 +1,12 @@
 import { Transform } from "node:stream";
 import { BODY_LENGTH_LENGTH } from "./constants.js";
 
+/**
+ * Creates a Transform stream from binary to object mode that decodes the stream to individual messages.
+ *
+ *
+ * @returns chunk decoding transform stream.
+ */
 export function createDecodeStream(): Transform {
   let buffer = Buffer.alloc(0);
   let step = 0;
