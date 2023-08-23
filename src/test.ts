@@ -1,8 +1,12 @@
-import { createEncodeStream } from "./encode.js";
-import { createDecodeStream } from "./decode.js";
+import {
+  createEncodeStream,
+  createChunkedStream,
+  createDecodeStream,
+} from "./index.js";
+
 import assert from "assert";
 import { isUint8Array } from "util/types";
-import { createChunkedStream } from "./chunked.js";
+
 import { PassThrough } from "stream";
 
 function testBuffer() {
