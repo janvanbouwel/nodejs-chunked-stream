@@ -2,7 +2,14 @@ import { Duplex } from "node:stream";
 import { createEncodeStream } from "./encode.js";
 import { createDecodeStream } from "./decode.js";
 
-export function createChunkedStream(duplex: Duplex) {
+/**
+ * Wraps the provided duplex with an encode- and decodestream (see `createEncodeStream()` and `createDecodeStream()`).
+ *
+ *
+ * @param duplex
+ * @returns
+ */
+export function createChunkedStream(duplex: Duplex): Duplex {
   const encode = createEncodeStream();
   encode.pipe(duplex);
   encode.on("error", (err) => duplex.destroy(err));
