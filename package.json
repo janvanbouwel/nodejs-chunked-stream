@@ -12,7 +12,9 @@
   "license": "ISC",
   "scripts": {
     "test": "node dist/test.js",
-    "build": "rimraf dist/ && tsc"
+    "build": "rimraf dist/ && tsc",
+    "eslint": "eslint src",
+    "prettier": "npx prettier . --write"
   },
   "devDependencies": {
     "@sindresorhus/tsconfig": "^4.0.0",

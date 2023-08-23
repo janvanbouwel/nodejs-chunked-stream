@@ -12,7 +12,4 @@ module.exports = {
     tsconfigRootDir: "src",
   },
   root: true,
-  rules: {
-    indent: ["error", true],
-  },
 };
