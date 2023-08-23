@@ -2,6 +2,8 @@ import { Duplex } from "node:stream";
 import { createEncodeStream } from "./encode.js";
 import { createDecodeStream } from "./decode.js";
 
+export class ChunkedStream extends Duplex {}
+
 /**
  * Wraps the provided duplex with an encode- and decode stream (see `createEncodeStream()` and `createDecodeStream()`).
  *
@@ -26,7 +28,7 @@ duplex.write([Buffer.from("abc"), Buffer.from("def")])
  * @param duplex
  * @returns
  */
-export function createChunkedStream(duplex: Duplex): Duplex {
+export function createChunkedStream(duplex: Duplex): ChunkedStream {
   const encode = createEncodeStream();
   encode.pipe(duplex);
   encode.on("error", (err) => duplex.destroy(err));
@@ -34,7 +36,7 @@ export function createChunkedStream(duplex: Duplex): Duplex {
   duplex.pipe(decode);
   duplex.on("error", (err) => decode.destroy(err));
 
-  const chunked = Duplex.from({ writable: encode, readable: decode });
+  const chunked = ChunkedStream.from({ writable: encode, readable: decode });
   chunked.allowHalfOpen = true;
   return chunked;
 }
